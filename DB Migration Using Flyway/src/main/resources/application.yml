@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:/data/flyway
+    driver: org.h2.Driver
+    username: sa
+    password: password
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console.enabled: true
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    baseline-version: 0
+    baseline-description: "init"

@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS Student(
+    id INTEGER NOT NULL PRIMARY KEY,
+    house_number VARCHAR2(255),
+    zip_code VARCHAR2(255)
+)
