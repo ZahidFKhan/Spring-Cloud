@@ -1,3 +1,15 @@
+buildscript {
+	ext {
+		springBootVersion = '3.1.2'
+		verifierVersion = '4.0.4'
+	}
+	repositories { mavenCentral() }
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:${verifierVersion}"
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.0-SNAPSHOT'
@@ -54,5 +66,11 @@ tasks.named('test') {
 }
 
 contracts {
+	// To have the same contract folder as Maven. In Gradle would default to
+	// src/contractTest/resources/contracts
+//	packageWithBaseClasses = 'hello'
+	baseClassMappings {
+		baseClassForTests("com.zahid.contract.ConsumerDrivenContract.CDCBaseTest");
+	}
 }
 

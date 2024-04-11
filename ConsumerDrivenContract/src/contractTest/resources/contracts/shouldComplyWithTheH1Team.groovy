@@ -5,7 +5,7 @@ import org.springframework.http.MediaType
 import org.springframework.cloud.contract.spec.Contract
 
 Contract.make {
-    description "should return all customers"
+//    description "should return all customers"
     request {
         url("/")
         method GET()
@@ -16,12 +16,12 @@ Contract.make {
             header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         }
         body(
-                [
+//                [
                         [
-                                id  : 1L,
+                                id  : 1,
                                 name: "Zahid"
                         ]
-                ]
+//                ]
         )
     }
 }
