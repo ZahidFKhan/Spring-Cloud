@@ -28,7 +28,9 @@ class MainControllerTest {
 
   @Test
   void contextLoads() throws Exception {
-    Mockito.when(customerRepository.findAll()).thenReturn(List.of(new Customer(1, "Zahid")));
+    Mockito.when(customerRepository.findAll())
+        .thenReturn(List.of(new Customer(1, "Zahid"), new Customer(2, "Arif")));
+
     mockMvc
         .perform(get("/"))
         .andDo(print())

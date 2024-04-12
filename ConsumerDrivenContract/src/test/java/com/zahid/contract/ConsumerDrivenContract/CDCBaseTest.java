@@ -14,15 +14,13 @@ import java.util.List;
 
 @SpringBootTest
 public abstract class CDCBaseTest {
-    @MockBean
-    CustomerService service;
-    @Autowired
-    MainController controller;
+  @MockBean CustomerService service;
+  @Autowired MainController controller;
 
-    @BeforeEach
-    public void setUp(){
-        RestAssuredMockMvc.standaloneSetup(controller);
-        Mockito.when(service.findAllCustomers())
-                .thenReturn(List.of(new Customer(1,"Zahid")));
-    }
+  @BeforeEach
+  public void setUp() {
+    RestAssuredMockMvc.standaloneSetup(controller);
+    Mockito.when(service.findAllCustomers())
+        .thenReturn(List.of(new Customer(1, "Zahid"), new Customer(2, "Arif")));
+  }
 }
