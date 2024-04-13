@@ -1,8 +1,12 @@
 package com.zahid.consumer.driven.contracts.cdcconsumer;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.zahid.consumer.driven.contracts.cdcconsumer.entities.Customer;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +18,10 @@ import org.springframework.cloud.contract.stubrunner.spring.StubRunnerPort;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.client.match.MockRestRequestMatchers;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @ExtendWith(SpringExtension.class)
