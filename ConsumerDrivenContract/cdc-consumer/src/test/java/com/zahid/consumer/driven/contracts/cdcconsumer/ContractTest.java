@@ -32,10 +32,10 @@ import org.springframework.web.client.RestTemplate;
     ids = "com.zahid.consumer.driven.contracts:cdc-producer:+")
 public class ContractTest {
 
-  @Autowired private MockMvc mockMvc;
+  @Autowired MockMvc mockMvc;
 
   @StubRunnerPort("cdc-producer")
-  private int producerPort;
+  int producerPort;
 
   @Test
   @SneakyThrows
