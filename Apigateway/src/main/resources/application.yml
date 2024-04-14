@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+
+management:
+  health:
+    redis:
+      enabled: false
+spring:
+  main:
+    web-application-type: reactive
+
+  cloud:
+    gateway:
+      routes:
+        - id: get_uuid_from_http_bin
+          uri: https://httpbin.org
+          predicates:
+            - Path=/uuid
+            - Host=**.example.com
+        - id: get_uuid_from_http_bin_with_path
+          uri: https://httpbin.org
+          predicates:
+            - Path=/demo
+            - Host=**.example.com
+          filters:
+            - SetPath=/uuid
