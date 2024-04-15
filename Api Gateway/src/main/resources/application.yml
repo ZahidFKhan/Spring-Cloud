@@ -13,7 +13,7 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: get_uuid_from_http_bin
+        - id: simple_get_uuid_from_http_bin_when_path_contains_uuid_and_host_examplecom
           uri: https://httpbin.org
           predicates:
             - Path=/uuid
@@ -28,11 +28,51 @@ spring:
           filters:
             - SetPath=/uuid
 
-
         - id: get_uuid_from_http_bin_using_dynamic_delays
           uri: https://httpbin.org
           predicates:
-            - Path=/demo
+            - Path=/demo/{delay}/{stars}
             - Host=**.example.com
           filters:
+            - SetPath=/drip
+            - AddRequestParameter=duration,0
+            - AddRequestParameter=numbytes,{stars}
+            - AddRequestParameter=code,200
+            - AddRequestParameter=delay,{delay}
+
+        - id: weighted_routing_1
+          uri: https://httpbin.org
+          predicates:
+            - Path=/wrouting/**
+            - Weight=group1, 5
+          filters:
+            - SetPath=/drip
+            - AddRequestParameter=duration,1
+            - AddRequestParameter=numbytes,20
+            - AddRequestParameter=code,200
+            - AddRequestParameter=delay,1
+
+        - id: weighted_routing_2
+          uri: https://httpbin.org
+          predicates:
+            - Path=/wrouting/uuid
+            - Weight=group1, 5
+          filters:
             - SetPath=/uuid
+
+        - id: using_circuit_breaker
+          uri: https://httpbin.org
+          predicates:
+            - Path=/circuitbreaker/{delay}/{stars}
+            - Host=**.example.com
+          filters:
+            - SetPath=/drip
+            - AddRequestParameter=duration,0
+            - AddRequestParameter=numbytes,{stars}
+            - AddRequestParameter=code,200
+            - AddRequestParameter=delay,{delay}
+            - name: CircuitBreaker
+              args:
+                name: myCircuitBreaker
+                fallbackUri: forward:/fallback
+
